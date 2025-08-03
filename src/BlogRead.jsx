@@ -4,38 +4,59 @@ import { useParams } from "react-router-dom";
 import Loader from "./components/Loader";
 import GhostLoader from "./components/GhostLoader";
 
-function BlogRead({ theme }) {
+function BlogRead({
+  theme,
+  apiKey,
+  apiEndpoint = "https://bloggestapi.sohaibaftab.me",
+}) {
   const { id } = useParams();
-  console.log(id);
 
-  const [blog, setBlog] = useState([]);
+  const [blog, setBlog] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [imgLoading, setImgLoading] = useState(true);
 
   const fetchBlogDetails = async () => {
-    await fetch(
-      `https://bloggestapi.sohaibaftab.me/api/blogs/blog-details?blog=${id}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setBlog(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (!apiKey) {
+      console.error("API key is required to fetch blog details");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${apiEndpoint}/api/blogs/blog-details?blog=${id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setBlog(data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Failed to fetch blog details:", error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    if (id) fetchBlogDetails();
-  }, []);
+    if (id && apiKey) fetchBlogDetails();
+  }, [id, apiKey]);
 
   const handleImageLoaded = () => {
     setImgLoading(false);
   };
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader theme={theme} />;
 
   return (
     <div id="blog-read" className={`blog-read-${theme}`}>

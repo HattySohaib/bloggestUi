@@ -1,9 +1,22 @@
 {
   "name": "bloggest",
-  "version": "1.3.7",
-  "description": "Blog integration for React Website",
+  "version": "2.0.0",
+  "description": "A React component library for integrating blog functionality with customizable themes and API support",
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "keywords": [
+    "react",
+    "blog",
+    "components",
+    "ui",
+    "theme",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HattySohaib/bloggestUi.git"
+  },
+  "homepage": "https://github.com/HattySohaib/bloggestUi#readme",
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "prepublishOnly": "npm run build"
