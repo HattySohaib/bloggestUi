@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Loader from "./components/Loader";
 import BlogCard2 from "./components/BlogCard";
