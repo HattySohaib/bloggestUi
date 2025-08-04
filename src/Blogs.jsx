@@ -20,13 +20,16 @@ function Blogs({
     }
 
     try {
-      const response = await fetch(`${apiEndpoint}/api/blogs/get-published`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${apiEndpoint}/api/blogs/get-published-api`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
