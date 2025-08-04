@@ -1,6 +1,6 @@
 {
   "name": "bloggest",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A React component library for integrating blog functionality with customizable themes and API support",
   "main": "dist/index.js",
   "module": "dist/index.js",
