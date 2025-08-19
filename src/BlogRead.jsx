@@ -9,7 +9,7 @@ function BlogRead({
   apiKey,
   apiEndpoint = "https://bloggestapi.sohaibaftab.me",
 }) {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const [blog, setBlog] = useState(null);
 
@@ -24,16 +24,13 @@ function BlogRead({
     }
 
     try {
-      const response = await fetch(
-        `${apiEndpoint}/api/blogs/blog-details?blog=${id}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${apiEndpoint}/api/blog/${slug}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,8 +46,8 @@ function BlogRead({
   };
 
   useEffect(() => {
-    if (id && apiKey) fetchBlogDetails();
-  }, [id, apiKey]);
+    if (slug && apiKey) fetchBlogDetails();
+  }, [slug, apiKey]);
 
   const handleImageLoaded = () => {
     setImgLoading(false);

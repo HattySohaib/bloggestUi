@@ -27,7 +27,7 @@ function Bloggest({
         }
       />
       <Route
-        path="read-this-blog/:id"
+        path="blog/:slug"
         element={
           <BlogRead theme={theme} apiKey={apiKey} apiEndpoint={apiEndpoint} />
         }

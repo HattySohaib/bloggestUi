@@ -20,23 +20,21 @@ function Blogs({
     }
 
     try {
-      const response = await fetch(
-        `${apiEndpoint}/api/blogs/get-published-api`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${apiEndpoint}/api/tokens/blogs`, {
+        method: "GET",
+        headers: {
+          "x-api-key": apiKey,
+          "Content-Type": "application/json",
+        },
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
-      setPublished(data);
+      const res = await response.json();
+      const data = res.data || [];
+      setPublished(data.blogs);
       setLoading(false);
     } catch (error) {
       console.error("Failed to fetch blogs:", error);

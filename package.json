@@ -19,7 +19,8 @@
   "homepage": "https://github.com/HattySohaib/bloggestUi#readme",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "start:demo": "cd demo && npx webpack serve --config webpack.config.js --mode development"
   },
   "author": "Sohaib Aftab",
   "license": "ISC",
