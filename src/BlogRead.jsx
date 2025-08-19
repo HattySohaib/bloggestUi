@@ -24,10 +24,10 @@ function BlogRead({
     }
 
     try {
-      const response = await fetch(`${apiEndpoint}/api/blog/${slug}`, {
+      const response = await fetch(`${apiEndpoint}/api/blogs/${slug}`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${apiKey}`,
+          "x-api-key": apiKey,
           "Content-Type": "application/json",
         },
       });
