@@ -15,7 +15,7 @@ function BlogCard2({ blog, theme }) {
   };
   return (
     <Link
-      to={`read-this-blog/${blog?._id}`}
+      to={`blog/${blog?.slug}`}
       key={blog._id}
       className={`recommended-blog blog-${theme}`}
     >
