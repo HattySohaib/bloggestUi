@@ -20,7 +20,7 @@ function Blogs({
     }
 
     try {
-      const response = await fetch(`${apiEndpoint}/api/tokens/blogs`, {
+      const response = await fetch(`${apiEndpoint}/api/token/blogs`, {
         method: "GET",
         headers: {
           "x-api-key": apiKey,
